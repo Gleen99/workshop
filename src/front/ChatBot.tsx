@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import OpenaiQuery from '../back/OpenaiQuery'
+import { queryOpenAI } from "../back/OpenaiQuery";
 
-const {queryOpenAI} = OpenaiQuery();
 function App() {
     const [userInput, setUserInput] = useState('');
     const [botResponse, setBotResponse] = useState('');
@@ -18,26 +17,24 @@ function App() {
 
     return (
         <div className="App">
-        <header className="App-header">
-            <h1>Chatbot avec OpenAI</h1>
+            <header className="App-header">
+                <h1>Chatbot avec OpenAI</h1>
 
-    <textarea
-    value={userInput}
-    onChange={e => setUserInput(e.target.value)}
-    placeholder="Posez votre question ici..."
-    />
-    <button onClick={handleAsk}>Demander</button>
+                <textarea
+                    value={userInput}
+                    onChange={e => setUserInput(e.target.value)}
+                    placeholder="Posez votre question ici..."
+                />
+                <button onClick={handleAsk}>Demander</button>
 
-    {botResponse && (
-        <div className="bot-response">
-            <p><strong>Bot:</strong> {botResponse}</p>
-    </div>
-    )}
-    </header>
-    </div>
-);
+                {botResponse && (
+                    <div className="bot-response">
+                        <p><strong>Bot:</strong> {botResponse}</p>
+                    </div>
+                )}
+            </header>
+        </div>
+    );
 }
 
 export default App;
-
-
