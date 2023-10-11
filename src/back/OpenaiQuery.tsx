@@ -1,17 +1,17 @@
 import axios from "axios";
 
 const OPENAI_API_URL = 'https://api.openai.com/v1/chat/completions';
-const OPENAI_API_KEY = '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';
+const OPENAI_API_KEY = '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';
 
 export const queryOpenAI = async (promptText: string) => {
     try {
         const response = await axios.post(OPENAI_API_URL, {
-            model: "gpt-3.5-turbo",
             messages: [{
                 role: "user",
                 content: promptText
             }],
-            temperature: 0.7
+            temperature: 0.7,
+            model: "gpt-3.5-turbo-0613",
         }, {
             headers: {
                 'Authorization': `Bearer ${OPENAI_API_KEY}`,
