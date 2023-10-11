@@ -11,9 +11,7 @@ function App() {
     const [displayedText, setDisplayedText] = useState('');
     const [isTypingDone, setIsTypingDone] = useState(false);
     const originalText = 'Partagez votre expérience pro en toute confiance.';
-    const [chatHistory, setChatHistory] = useState<ChatEntry[]>([{
-        answer: "", question: "Salut, je suis Jade. Avez-vous subi un harcèlement sexuel au travail ou voulez-vous savoir ce que c'est que le harcèlement sexuel? Posez-moi une question."
-    }]);
+    const [chatHistory, setChatHistory] = useState<ChatEntry[]>([]);
 
     useEffect(() => {
         let index = 0;
@@ -28,22 +26,19 @@ function App() {
                 clearInterval(interval);
             }
         }, 100);
-
         return () => clearInterval(interval);
     }, []);
 
     const handleAsk = async () => {
         try {
-            const response = await queryOpenAI(userInput);
-            if (chatHistory.length === 1 && chatHistory[0].question.includes("Salut, je suis Jade")) {
-                setChatHistory([{question: userInput, answer: response}]);
-            } else {
-                setChatHistory(prevHistory => [...prevHistory, {question: userInput, answer: response}]);
-            }
+            const response = await queryOpenAI(chatHistory, userInput);
+            const newEntry = { question: userInput, answer: response };
+            setChatHistory(prevHistory => [...prevHistory, newEntry]);
             setUserInput('');
         } catch (error) {
             console.error('Erreur lors de l\'interrogation de OpenAI:', error);
-            setChatHistory(prevHistory => [...prevHistory, {question: userInput, answer: 'Désolé, je n\'ai pas pu obtenir une réponse.'}]);
+            const errorEntry = { question: userInput, answer: 'Désolé, je n\'ai pas pu obtenir une réponse.' };
+            setChatHistory(prevHistory => [...prevHistory, errorEntry]);
         }
     };
 
