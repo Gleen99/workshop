@@ -1,7 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=ADLaM+Display&display=swap');
+
 body, html {
     height: 100%;
     margin: 0;
-    background-color: #164265;
+    background-image: url('image/IA.png');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .App {
@@ -21,20 +25,19 @@ body, html {
 }
 .TextMain{
     text-align: center;
-    z-index: 1000;
     color: white;
     padding-top: 45px;
     padding-bottom: 45px;
+    font-family: 'ADLaM Display', serif;
 }
 .initial-message {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100%;
 
     .initial-messageLogo {
-        background-image: url('imgLogo.png');
+        background-image: url('image/imgLogo.png');
         background-repeat: no-repeat;
         background-size: cover;
         width: 107px;
@@ -43,10 +46,14 @@ body, html {
     }
     .h1{
         color: #3495b3;
+        font-family: 'ADLaM Display', serif;
     }
     .p{
         text-align: center;
         width: 100%;
+        font-family: 'ADLaM Display', serif;
+        color: white;
+        padding-top: 34px;
     }
 }
 .App-header {
@@ -54,24 +61,42 @@ body, html {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 45px;
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 1000;
-    height: 23px;
-    gap: 37vw
-}
+    height: auto;
+    flex-direction: column;
+
+    }
 
 .mainChatBot {
-    background-color: white;
     border-radius: 50px;
     padding: 20px;
     margin-top: 15px;
     margin-left: 145px;
     margin-right: 145px;
     margin-bottom: 15px;
+    width: 75%;
+    height: 35vh;
+    overflow: auto;
+
 }
+
+.mainChatBot::-webkit-scrollbar {
+    width: 10px;
+}
+
+.mainChatBot::-webkit-scrollbar-thumb {
+    background: #0077b6;
+    border-radius: 5px;
+}
+
+.mainChatBot::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 5px;
+}
+
 
 .user-question{
     background-color: #3495b3;
@@ -100,7 +125,7 @@ body, html {
     display: inline-block;
     width: 50px;
     height: 50px;
-    background-image: url('imgLogo.png');
+    background-image: url('image/imgLogo.png');
     background-size: cover;
     margin-right: 10px;
     vertical-align: middle;
@@ -111,7 +136,7 @@ body, html {
     display: inline-block;
     width: 50px;
     height: 50px;
-    background-image: url('user.png');
+    background-image: url('image/user.png');
     background-size: cover;
     margin-right: 10px;
     vertical-align: middle;
@@ -126,7 +151,7 @@ body, html {
 }
 
 .send-icon-button {
-    background-image: url('envoyer.png');
+    background-image: url('image/envoyer.png');
     background-repeat: no-repeat;
     background-size: cover;
     border: none;
@@ -154,7 +179,7 @@ body, html {
 }
 
 .send-icon-button {
-    background-image: url('envoyer.png');
+    background-image: url('image/envoyer.png');
     background-repeat: no-repeat;
     background-size: cover;
     color: white;
@@ -172,12 +197,14 @@ body, html {
 }
 
 .logo {
-    background-image: url('imgLogo.png');
+    background-image: url('image/imgLogo.png');
     background-repeat: no-repeat;
     background-size: cover;
     width: 107px;
     height: 110px;
     border: none;
+    align-items: center;
+    justify-content: center;
 }
 
 .title {
@@ -186,12 +213,7 @@ body, html {
     font-size: 1.5em;
 }
 
-.social-links {
-    display: flex;
-    gap: 10px;
-    margin-right: auto;
-    cursor: pointer;
-}
+
 
 .typing-indicator {
     animation: blink 1s infinite;

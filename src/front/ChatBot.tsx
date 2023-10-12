@@ -11,7 +11,7 @@ function App() {
     const [userInput, setUserInput] = useState('');
     const [displayedText, setDisplayedText] = useState('');
     const [isTypingDone, setIsTypingDone] = useState(false);
-    const originalText = 'Partagez votre expérience pro en toute confiance.';
+    const originalText = 'Partagez votre expérience pro en toute confiance et anonymement.'
     const [chatHistory, setChatHistory] = useState<ChatEntry[]>([]);
     const [errorMessage, setErrorMessage] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -28,7 +28,7 @@ function App() {
             } else {
                 clearInterval(interval);
             }
-        }, 100);
+        }, 50);
         return () => clearInterval(interval);
     }, []);
 
@@ -74,12 +74,6 @@ function App() {
     return (<div className="App">
             <header className="App-header">
                 <div className="logo"/>
-                <span className="title">Jade</span>
-                <div className="social-links">
-                    <span>Twitter</span>
-                    <span>/</span>
-                    <span>Facebook</span>
-                </div>
             </header>
             <div className="main">
                 <div className="TextMain">Merci de raconter les faits sans donner de données personnelles (noms,
@@ -92,7 +86,6 @@ function App() {
                 <div className="mainChatBot">
                     {chatHistory.length === 0 ? (
                         <div className="initial-message">
-                            <div className="initial-messageLogo" />
                             <h1 className="h1">{displayedText}<span className={isTypingDone ? 'typing-indicator' : ''}>|</span></h1>
                             <p className="p">Salut, je suis Jade. Avez-vous subi un harcèlement sexuel au travail <br/> ou voulez-vous savoir ce que c'est que le harcèlement sexuel?
                                 <br/>Posez-moi une question.</p>
@@ -133,7 +126,7 @@ function App() {
                     onChange={e => setUserInput(e.target.value)}
                     placeholder="Posez votre question ici..."
                 />
-                    <button className="send-icon-button" onClick={handleAsk}></button>
+                    <button disabled={isLoading} className="send-icon-button" onClick={handleAsk}></button>
                 </div>
 
             </div>
