@@ -106,7 +106,7 @@ function App() {
 
                             </div>
                             <h1 className="h1">{displayedText}<span className={isTypingDone ? 'typing-indicator' : ''}>|</span></h1>
-                            <p className="p">Salut, je suis Jade. Avez-vous subi un harcèlement sexuel au travail <br/> ou voulez-vous savoir ce que c'est que le harcèlement sexuel?
+                            <p className="TextMain">Salut, je suis Jade. Avez-vous subi un harcèlement sexuel au travail <br/> ou voulez-vous savoir ce que c'est que le harcèlement sexuel?
                                 <br/>Posez-moi une question.</p>
                         </div>
                     ) : chatHistory.map((entry, index) => (
@@ -144,7 +144,7 @@ function App() {
                     {errorMessage && <div style={{color: 'red', marginBottom: '8px'}}>{errorMessage}</div>}
                 </div>
                 <div className="textarea-container">
-                <textarea
+                <input
                     className="custom-textarea"
                     value={userInput}
                     onChange={e => setUserInput(e.target.value)}
