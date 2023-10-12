@@ -41,8 +41,7 @@ function App() {
         setIsLoading(true);
 
         try {
-            const response = await queryOpenAI(chatHistory, userInput);
-
+            
             if (chatHistory.length === 0) {
                 const initialEntry = {
                     question: "",
@@ -51,6 +50,16 @@ function App() {
                 setChatHistory([initialEntry]);
             }
 
+            const newEntryQ = {
+                question: userInput,
+                answer: ""
+            };
+            setChatHistory(prevHistory => [...prevHistory, newEntryQ]);
+            
+            const response = await queryOpenAI(chatHistory, userInput);
+            
+            setChatHistory(prevChatHistory => prevChatHistory.slice(0, -1));
+              
             const newEntry = {
                 question: userInput,
                 answer: response
