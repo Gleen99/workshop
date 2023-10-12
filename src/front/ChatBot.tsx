@@ -85,18 +85,19 @@ function App() {
                 <div className="logo"/>
             </header>
             <div className="main">
-                <div className="TextMain">Merci de raconter les faits sans donner de données personnelles (noms,
+               
+                <div className="mainChatBot">
+                    {chatHistory.length === 0 ? (
+                        <div className="initial-message">
+                             <div className="TextMain">Merci de raconter les faits sans donner de données personnelles (noms,
                     prenoms, ...)
                     <br></br>
                     Si vous n’êtes pas satisfait des réponses et que vous ne savez pas à qui en parler, vous pouvez
                     contacter le 17.
 
                 </div>
-                <div className="mainChatBot">
-                    {chatHistory.length === 0 ? (
-                        <div className="initial-message">
                             <h1 className="h1">{displayedText}<span className={isTypingDone ? 'typing-indicator' : ''}>|</span></h1>
-                            <p className="p">Salut, je suis Jade. Avez-vous subi un harcèlement sexuel au travail <br/> ou voulez-vous savoir ce que c'est que le harcèlement sexuel?
+                            <p className="TextMain">Salut, je suis Jade. Avez-vous subi un harcèlement sexuel au travail <br/> ou voulez-vous savoir ce que c'est que le harcèlement sexuel?
                                 <br/>Posez-moi une question.</p>
                         </div>
                     ) : chatHistory.map((entry, index) => (
