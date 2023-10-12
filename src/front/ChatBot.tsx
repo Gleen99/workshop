@@ -41,7 +41,7 @@ function App() {
         setIsLoading(true);
 
         try {
-            
+
             if (chatHistory.length === 0) {
                 const initialEntry = {
                     question: "",
@@ -49,34 +49,34 @@ function App() {
                 };
                 setChatHistory([initialEntry]);
             }
-
+            const newinput = userInput;
+            setUserInput('');
             const newEntryQ = {
-                question: userInput,
+                question: newinput,
                 answer: ""
             };
             setChatHistory(prevHistory => [...prevHistory, newEntryQ]);
-            
-            const response = await queryOpenAI(chatHistory, userInput);
-            
+
+            const response = await queryOpenAI(chatHistory, newinput);
+
             setChatHistory(prevChatHistory => prevChatHistory.slice(0, -1));
-              
+
             const newEntry = {
-                question: userInput,
+                question: newinput,
                 answer: response
             };
             setChatHistory(prevHistory => [...prevHistory, newEntry]);
-            setUserInput('');
             setErrorMessage('');
 
         } catch (error) {
             console.error('Erreur lors de l\'interrogation de OpenAI:', error);
             const errorEntry = { question: userInput, answer: 'Désolé, je n\'ai pas pu obtenir une réponse.' };
-            setChatHistory(prevHistory => [...prevHistory, errorEntry]);
+                setChatHistory(prevHistory => [...prevHistory, errorEntry]);
             setErrorMessage('Une erreur s\'est produite. Veuillez réessayer.');
         } finally {
-            setIsLoading(false);
-        }
-    };
+                setIsLoading(false);
+            }
+        };
 
 
 
@@ -85,16 +85,17 @@ function App() {
                 <div className="logo"/>
             </header>
             <div className="main">
-                <div className="TextMain">Merci de raconter les faits sans donner de données personnelles (noms,
-                    prenoms, ...)
-                    <br></br>
-                    Si vous n’êtes pas satisfait des réponses et que vous ne savez pas à qui en parler, vous pouvez
-                    contacter le 17.
 
-                </div>
                 <div className="mainChatBot">
                     {chatHistory.length === 0 ? (
                         <div className="initial-message">
+                            <div className="TextMain">Merci de raconter les faits sans donner de données personnelles (noms,
+                                prenoms, ...)
+                                <br></br>
+                                Si vous n’êtes pas satisfait des réponses et que vous ne savez pas à qui en parler, vous pouvez
+                                contacter le 17.
+
+                            </div>
                             <h1 className="h1">{displayedText}<span className={isTypingDone ? 'typing-indicator' : ''}>|</span></h1>
                             <p className="p">Salut, je suis Jade. Avez-vous subi un harcèlement sexuel au travail <br/> ou voulez-vous savoir ce que c'est que le harcèlement sexuel?
                                 <br/>Posez-moi une question.</p>
@@ -116,8 +117,13 @@ function App() {
                                     </div>
                                 ) : (
                                     <>
-                                        <strong className="bot-icon"></strong>
-                                        {entry.answer}
+                                        <strong className="bot-icon">
+                                            {entry.answer.split('\n').map((line, index) => (
+                                                <React.Fragment key={index}>
+                                                    {line}
+                                                    {index !== entry.answer.split('\n').length - 1 && <br />}
+                                                </React.Fragment>                                        ))}
+                                        </strong>
                                     </>
                                 )}
                             </div>
