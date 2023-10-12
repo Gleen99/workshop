@@ -93,8 +93,8 @@ function App() {
                     {chatHistory.length === 0 ? (
                         <div className="initial-message">
                             <div className="initial-messageLogo" />
-                            <h1>{displayedText}<span className={isTypingDone ? 'typing-indicator' : ''}>|</span></h1>
-                            <p>Salut, je suis Jade. Avez-vous subi un harcèlement sexuel au travail ou voulez-vous savoir ce que c'est que le harcèlement sexuel?
+                            <h1 className="h1">{displayedText}<span className={isTypingDone ? 'typing-indicator' : ''}>|</span></h1>
+                            <p className="p">Salut, je suis Jade. Avez-vous subi un harcèlement sexuel au travail <br/> ou voulez-vous savoir ce que c'est que le harcèlement sexuel?
                                 <br/>Posez-moi une question.</p>
                         </div>
                     ) : chatHistory.map((entry, index) => (

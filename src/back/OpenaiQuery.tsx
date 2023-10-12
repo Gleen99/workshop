@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const OPENAI_API_URL = 'https://api.openai.com/v1/chat/completions';
-const OPENAI_API_KEY = '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';
+const OPENAI_API_KEY = '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';
 
 type ChatEntry = {
     question: string; answer: string;
@@ -18,7 +18,7 @@ export const queryOpenAI = async (conversation: ChatEntry[], userInput:string) =
         }
 
         const response = await axios.post(OPENAI_API_URL, {
-            messages,
+            messages: messages,
             temperature: 0.7,
             model: "gpt-3.5-turbo-0613",
         }, {
