@@ -18,7 +18,7 @@ export const queryOpenAI = async (conversation: ChatEntry[], userInput:string) =
         }
 
         const response = await axios.post(OPENAI_API_URL, {
-            messages,
+            messages: messages,
             temperature: 0.7,
             model: "gpt-3.5-turbo-0613",
         }, {
