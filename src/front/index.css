@@ -38,14 +38,6 @@ body, html {
     align-items: center;
     justify-content: center;
 
-    .initial-messageLogo {
-        background-image: url('image/imgLogo.png');
-        background-repeat: no-repeat;
-        background-size: cover;
-        width: 107px;
-        height: 110px;
-        border: none;
-    }
 
     .h1 {
         color: #3495b3;

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const OPENAI_API_URL = 'https://api.openai.com/v1/chat/completions';
-const OPENAI_API_KEY = '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';
+const OPENAI_API_KEY = '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';
 
 type ChatEntry = {
     question: string; answer: string;
