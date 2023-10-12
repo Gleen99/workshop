@@ -32,6 +32,14 @@ function App() {
         return () => clearInterval(interval);
     }, []);
 
+    useEffect(() => {
+        var objDiv = document.getElementById("mainChatBot");
+        if(objDiv != null)
+        {
+            objDiv.scrollTop = objDiv.scrollHeight;
+        } 
+    }, [chatHistory]);
+
     const handleAsk = async () => {
         if (!userInput.trim()) {
             setErrorMessage('Veuillez écrire quelque chose avant de soumettre.');
@@ -67,7 +75,7 @@ function App() {
             };
             setChatHistory(prevHistory => [...prevHistory, newEntry]);
             setErrorMessage('');
-
+    
         } catch (error) {
             console.error('Erreur lors de l\'interrogation de OpenAI:', error);
             const errorEntry = { question: userInput, answer: 'Désolé, je n\'ai pas pu obtenir une réponse.' };
@@ -75,6 +83,7 @@ function App() {
             setErrorMessage('Une erreur s\'est produite. Veuillez réessayer.');
         } finally {
                 setIsLoading(false);
+    
             }
         };
 
@@ -86,7 +95,7 @@ function App() {
             </header>
             <div className="main">
 
-                <div className="mainChatBot">
+                <div className="mainChatBot" id="mainChatBot">
                     {chatHistory.length === 0 ? (
                         <div className="initial-message">
                             <div className="TextMain">Merci de raconter les faits sans donner de données personnelles (noms,
