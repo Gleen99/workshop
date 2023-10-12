@@ -16,6 +16,16 @@ function App() {
     const [errorMessage, setErrorMessage] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
+    const filterPersonalInfo = (text:string): string => {
+        const emailPattern = /[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}/g;
+        const phonePattern = /(\+?\d{1,4}[-\.\s]?)?(\(?\d{1,3}\)?[-\.\s]?)?\d{1,4}[-\.\s]?\d{1,4}[-\.\s]?\d{1,9}/g;
+
+        let filteredText = text
+            .replace(emailPattern, '[email]')
+            .replace(phonePattern, '[phone]')
+
+        return filteredText;
+    }
     useEffect(() => {
         let index = 0;
         const interval = setInterval(() => {
@@ -41,7 +51,8 @@ function App() {
     }, [chatHistory]);
 
     const handleAsk = async () => {
-        if (!userInput.trim()) {
+        const filteredInput = filterPersonalInfo(userInput.trim());
+        if (!filteredInput) {
             setErrorMessage('Veuillez écrire quelque chose avant de soumettre.');
             return;
         }
@@ -57,7 +68,9 @@ function App() {
                 };
                 setChatHistory([initialEntry]);
             }
-            const newinput = userInput;
+
+            const newinput = filteredInput;
+
             setUserInput('');
             const newEntryQ = {
                 question: newinput,
@@ -85,6 +98,7 @@ function App() {
                 setIsLoading(false);
     
             }
+
         };
 
 
